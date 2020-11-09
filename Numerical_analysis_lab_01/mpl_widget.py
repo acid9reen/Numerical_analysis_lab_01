@@ -10,7 +10,7 @@ class Mpl_widget(QtWidgets.QWidget):
 
         QtWidgets.QWidget.__init__(self, parent)
 
-        self.canvas = FigureCanvas(Figure())
+        self.canvas = FigureCanvas(Figure(tight_layout=True))
 
         vertical_layout = QtWidgets.QVBoxLayout()
         vertical_layout.addWidget(self.canvas)
