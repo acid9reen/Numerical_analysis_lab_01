@@ -34,6 +34,7 @@ class Main_window(QtWidgets.QMainWindow):
         xs = []
         vs = []
         us = []
+        row = 0
 
         while x_curr < self.x_max:
             if self.step_control_check_box.isChecked():
@@ -41,6 +42,13 @@ class Main_window(QtWidgets.QMainWindow):
                                                                      v_curr)
             else:
                 point_info = integrator.next_point(x_curr, v_curr)
+
+            self.table.insertRow(row)
+            for index, item in enumerate(point_info.all()):
+                self.table.setItem(row, index, QtWidgets.QTableWidgetItem(
+                    f"{item:.3f}" if isinstance(item, float) else f"{item}"))
+
+            row += 1
 
             x_curr = point_info.x
             v_curr = point_info.v

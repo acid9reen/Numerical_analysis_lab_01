@@ -14,6 +14,10 @@ class Point_info:
         self.mul_count = mul_count
         self.div_count = div_count
 
+    def all(self):
+        return (self.x, self.v, self.v2, self.delta_v2_v,
+                self.lee, self.mul_count, self.div_count)
+
 
 class Integrator:
     def __init__(self, func, step, eps, max_iters) -> None:

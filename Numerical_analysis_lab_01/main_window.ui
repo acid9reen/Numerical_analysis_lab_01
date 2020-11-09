@@ -48,17 +48,17 @@
       </column>
       <column>
        <property name="text">
-        <string>u</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
         <string>v</string>
        </property>
       </column>
       <column>
        <property name="text">
         <string>v2</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>v - v2</string>
        </property>
       </column>
       <column>
