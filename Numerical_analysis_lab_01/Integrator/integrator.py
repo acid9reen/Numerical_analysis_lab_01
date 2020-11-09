@@ -1,7 +1,7 @@
 from math import sin, pow
 
 
-class Point_info():
+class Point_info:
     def __init__(self, step, x, v,
                  v2=None, lee=None,
                  mul_count=None, div_count=None) -> None:
@@ -9,13 +9,13 @@ class Point_info():
         self.x = x
         self.v = v
         self.v2 = v2
-        self.delta_v2_v = v - v2
+        self.delta_v2_v = v - v2 if v2 else None
         self.lee = lee
         self.mul_count = mul_count
         self.div_count = div_count
 
 
-class Integrator():
+class Integrator:
     def __init__(self, func, step, eps, max_iters) -> None:
         self._func = func
         self._step = step
@@ -46,10 +46,10 @@ class Integrator():
 
 
     def _runge_kutta_4(self, x: float, v: float, step: float) -> dict:
-        k1 = self.func(x, v)
-        k2 = self.func(x + step / 2.0, v + 0.5 * step * k1)
-        k3 = self.func(x + step / 2.0, v + 0.5 * step * k2)
-        k4 = self.func(x + step, v + step * k3)
+        k1 = self._func(x, v)
+        k2 = self._func(x + step / 2.0, v + 0.5 * step * k1)
+        k3 = self._func(x + step / 2.0, v + 0.5 * step * k2)
+        k4 = self._func(x + step, v + step * k3)
 
         v_next = v + (step / 6.0) * (k1 + 2.0 * k2 + 2.0 * k3 + k4)
         x_next = x + step
@@ -82,7 +82,7 @@ class Integrator():
             half_step_2 = self._runge_kutta_4(half_step_1['x'], half_step_1['v'],
                                               self._step / 2.)
 
-            delta = whole_step - half_step_2['v']
+            delta = whole_step['v'] - half_step_2['v']
             lee = abs(delta / (pow(2, 4) - 1))
 
             if (lee > self._eps) and (iter_counter <= self._max_iters):
@@ -100,15 +100,15 @@ class Integrator():
                 if lee > self._max_error:
                     self._max_error = lee
 
-                if self._step > self._max_step:
+                if self._step > self.max_step:
                     self._max_step = self._step
                     self._max_step_x_coord = x_next
 
-                if self._step < self._min_step:
+                if self._step < self.min_step:
                     self._min_step = self._step
                     self._min_step_x_coord = x_next
 
                 break
 
-            return Point_info(old_step, x_next, v_next, v2_next,
-                            lee, self._mul_count, self._div_count)
+        return Point_info(old_step, x_next, v_next, v2_next,
+                        lee, self._mul_count, self._div_count)
