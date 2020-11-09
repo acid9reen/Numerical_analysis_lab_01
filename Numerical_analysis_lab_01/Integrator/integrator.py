@@ -1,4 +1,4 @@
-from math import sin, pow
+from math import sin, pow, exp
 
 
 class Point_info:
@@ -37,6 +37,11 @@ class Integrator:
     @staticmethod
     def test_task_1(x: float, u: float) -> float:
         return float(2 * u)
+
+
+    @staticmethod
+    def test_task_1_true_solution(x: float, u: float) -> float:
+        return float(u * exp(2 * x))
 
 
     @staticmethod
