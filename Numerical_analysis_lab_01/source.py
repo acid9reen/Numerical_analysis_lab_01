@@ -35,6 +35,7 @@ class Main_window(QtWidgets.QMainWindow):
         vs = []
         us = []
         row = 0
+        self.table.setRowCount(0)
 
         while x_curr < self.x_max:
             if self.step_control_check_box.isChecked():
@@ -46,7 +47,7 @@ class Main_window(QtWidgets.QMainWindow):
             self.table.insertRow(row)
             for index, item in enumerate(point_info.all()):
                 self.table.setItem(row, index, QtWidgets.QTableWidgetItem(
-                    f"{item:.3f}" if isinstance(item, float) else f"{item}"))
+                    f"{item:.2e}" if isinstance(item, float) else f"{item}"))
 
             row += 1
 

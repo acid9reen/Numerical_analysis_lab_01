@@ -16,7 +16,7 @@ class Point_info:
 
     def all(self):
         return (self.x, self.v, self.v2, self.delta_v2_v,
-                self.lee, self.mul_count, self.div_count)
+                self.lee, self.step, self.mul_count, self.div_count)
 
 
 class Integrator:
@@ -45,7 +45,7 @@ class Integrator:
 
     @staticmethod
     def test_task_1_true_solution(x: float, u: float) -> float:
-        return float(u * exp(2 * x))
+        return float(1 * exp(2 * x))
 
 
     @staticmethod
@@ -94,9 +94,10 @@ class Integrator:
             delta = whole_step['v'] - half_step_2['v']
             lee = abs(delta / (pow(2, 4) - 1))
 
-            if (lee > self._eps) and (iter_counter <= self._max_iters):
+            if (lee > self._eps) and (iter_counter < self._max_iters):
                 self._step /= 2
                 self._div_count += 1
+                iter_counter += 1
             else:
                 x_next = x + self._step
                 v_next = whole_step['v']
