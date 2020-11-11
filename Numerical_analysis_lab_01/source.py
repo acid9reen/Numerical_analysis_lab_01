@@ -27,44 +27,84 @@ class Main_window(QtWidgets.QMainWindow):
         self.eps   = float(self.eps_text_box.text())
         self.max_iters = 1000
 
-        integrator = Integrator(Integrator.test_task_1, self.step,
-                                self.eps, self.max_iters)
-        x_curr = self.x_min
-        v_curr = self.u_0
-        xs = []
-        vs = []
-        us = []
-        row = 0
-        while (self.table.rowCount() > 0):
-            self.table.removeRow(0)
+        if self.test_task_1_radio_btn.isChecked():
+            integrator = Integrator(Integrator.test_task_1, self.step,
+                                    self.eps, self.max_iters)
+            x_curr = self.x_min
+            v_curr = self.u_0
+            xs = []
+            vs = []
+            us = []
 
-        while x_curr < self.x_max:
-            if self.step_control_check_box.isChecked():
-                point_info = integrator.next_point_with_step_control(x_curr,
-                                                                     v_curr)
-            else:
-                point_info = integrator.next_point(x_curr, v_curr)
+            row = 0
+            while (self.table.rowCount() > 0):
+                self.table.removeRow(0)
 
-            self.table.insertRow(row)
-            for index, item in enumerate(point_info.all()):
-                self.table.setItem(row, index, QtWidgets.QTableWidgetItem(
-                    f"{item:.2e}" if isinstance(item, float) else f"{item}"))
+            while x_curr < self.x_max:
+                if self.step_control_check_box.isChecked():
+                    point_info = integrator.next_point_with_step_control(x_curr,
+                                                                        v_curr)
+                else:
+                    point_info = integrator.next_point(x_curr, v_curr)
 
-            row += 1
+                self.table.insertRow(row)
+                for index, item in enumerate(point_info.all()):
+                    self.table.setItem(row, index, QtWidgets.QTableWidgetItem(
+                        f"{item:.2e}" if isinstance(item, float) else f"{item}"))
 
-            x_curr = point_info.x
-            v_curr = point_info.v
-            xs.append(x_curr)
-            vs.append(v_curr)
-            us.append(Integrator.test_task_1_true_solution(x_curr, v_curr))
+                row += 1
 
-        self.table.setVerticalHeaderLabels((str(i) for i in range(row + 1)))
-        self.plot.canvas.axes.clear()
-        self.plot.canvas.axes.plot(xs, vs)
-        self.plot.canvas.axes.plot(xs, us)
-        self.plot.canvas.axes.legend(('v(x)', 'u(x)'),loc='upper right')
-        self.plot.canvas.axes.set_title('Numerical approximation')
-        self.plot.canvas.draw()
+                x_curr = point_info.x
+                v_curr = point_info.v
+                xs.append(x_curr)
+                vs.append(v_curr)
+                us.append(Integrator.test_task_1_true_solution(x_curr, v_curr))
+
+            self.table.setVerticalHeaderLabels((str(i) for i in range(row + 1)))
+            self.plot.canvas.axes.clear()
+            self.plot.canvas.axes.plot(xs, vs)
+            self.plot.canvas.axes.plot(xs, us)
+            self.plot.canvas.axes.legend(('v(x)', 'u(x)'),loc='upper right')
+            self.plot.canvas.axes.set_title('Numerical approximation')
+            self.plot.canvas.draw()
+
+        elif self.task_1_radio_btn.isChecked():
+            integrator = Integrator(Integrator.task_1, self.step,
+                                    self.eps, self.max_iters)
+            x_curr = self.x_min
+            v_curr = self.u_0
+            xs = []
+            vs = []
+
+            row = 0
+            while (self.table.rowCount() > 0):
+                self.table.removeRow(0)
+
+            while x_curr < self.x_max:
+                if self.step_control_check_box.isChecked():
+                    point_info = integrator.next_point_with_step_control(x_curr,
+                                                                        v_curr)
+                else:
+                    point_info = integrator.next_point(x_curr, v_curr)
+
+                self.table.insertRow(row)
+                for index, item in enumerate(point_info.all()):
+                    self.table.setItem(row, index, QtWidgets.QTableWidgetItem(
+                        f"{item:.2e}" if isinstance(item, float) else f"{item}"))
+
+                row += 1
+
+                x_curr = point_info.x
+                v_curr = point_info.v
+                xs.append(x_curr)
+                vs.append(v_curr)
+
+            self.table.setVerticalHeaderLabels((str(i) for i in range(row + 1)))
+            self.plot.canvas.axes.clear()
+            self.plot.canvas.axes.plot(xs, vs)
+            self.plot.canvas.axes.legend(('v(x)'),loc='upper right')
+            self.plot.canvas.axes.set_title('Numerical approximation')
+            self.plot.canvas.draw()
 
 
 def main() -> None:
