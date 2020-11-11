@@ -25,13 +25,25 @@ class Main_window(QtWidgets.QMainWindow):
         self.u_0   = float(self.u_0_text_box.text())
         self.step  = float(self.step_text_box.text())
         self.eps   = float(self.eps_text_box.text())
-        self.max_iters = 1000
+        self.max_iters = float(self.iters_text_box.text())
+
+        self.ns.setText(f"")
+        self.max_step.setText(f"")
+        self.max_step_x_coord.setText(f"")
+        self.min_step.setText(f"")
+        self.min_step_x_coord.setText(f"")
+        self.bound_delta.setText(f"")
+        self.max_u_v_delta.setText(f"-")
+        self.max_u_v_delta_x_coord.setText(f"-")
+        self.max_lee.setText(f"")
 
         if self.test_task_1_radio_btn.isChecked():
             integrator = Integrator(Integrator.test_task_1, self.step,
                                     self.eps, self.max_iters)
             x_curr = self.x_min
             v_curr = self.u_0
+            max_u_v_delta = 0
+            max_u_v_delta_x_coord = 0
             xs = np.array([], dtype=np.longdouble)
             vs = np.array([], dtype=np.longdouble)
             us = np.array([], dtype=np.longdouble)
@@ -47,18 +59,28 @@ class Main_window(QtWidgets.QMainWindow):
                 else:
                     point_info = integrator.next_point(x_curr, v_curr)
 
+                x_curr = point_info.x
+                v_curr = point_info.v
+                u_curr = Integrator.test_task_1_true_solution(x_curr, v_curr)
+                xs = np.append(xs, x_curr)
+                vs = np.append(vs, v_curr)
+                us = np.append(us, u_curr)
+
                 self.table.insertRow(row)
                 for index, item in enumerate(point_info.all()):
                     self.table.setItem(row, index, QtWidgets.QTableWidgetItem(
                         f"{item:.2e}" if isinstance(item, float) else f"{item}"))
 
+                max_u_v_delta_curr = abs(v_curr - u_curr)
+                self.table.setItem(row, 8, QtWidgets.QTableWidgetItem(f"{u_curr:.2e}"))
+                self.table.setItem(row, 9, QtWidgets.QTableWidgetItem(
+                    f"{max_u_v_delta_curr:.2e}"))
+
                 row += 1
 
-                x_curr = point_info.x
-                v_curr = point_info.v
-                xs = np.append(xs, x_curr)
-                vs = np.append(vs, v_curr)
-                us = np.append(us, Integrator.test_task_1_true_solution(x_curr, v_curr))
+                if max_u_v_delta_curr > max_u_v_delta:
+                    max_u_v_delta = max_u_v_delta_curr
+                    max_u_v_delta_x_coord = x_curr
 
             self.table.setVerticalHeaderLabels((str(i) for i in range(row + 1)))
             self.plot.canvas.axes.clear()
@@ -67,6 +89,16 @@ class Main_window(QtWidgets.QMainWindow):
             self.plot.canvas.axes.legend(('v(x)', 'u(x)'),loc='upper right')
             self.plot.canvas.axes.set_title('Numerical approximation')
             self.plot.canvas.draw()
+
+            self.ns.setText(f"{row}")
+            self.max_step.setText(f"{integrator.max_step:.2e}")
+            self.max_step_x_coord.setText(f"{integrator.max_step_x_coord:.2e}")
+            self.min_step.setText(f"{integrator.min_step:.2e}")
+            self.min_step_x_coord.setText(f"{integrator.min_step_x_coord:.2e}")
+            self.bound_delta.setText(f"{(x_curr - self.x_max):.2e}")
+            self.max_u_v_delta.setText(f"{max_u_v_delta:.2e}")
+            self.max_u_v_delta_x_coord.setText(f"{max_u_v_delta_x_coord:.2e}")
+            self.max_lee.setText(f"{integrator.max_error:.2e}")
 
         elif self.task_1_radio_btn.isChecked():
             integrator = Integrator(Integrator.task_1, self.step,
@@ -105,6 +137,14 @@ class Main_window(QtWidgets.QMainWindow):
             self.plot.canvas.axes.legend(('v(x)'),loc='upper right')
             self.plot.canvas.axes.set_title('Numerical approximation')
             self.plot.canvas.draw()
+
+            self.ns.setText(f"{row}")
+            self.max_step.setText(f"{integrator.max_step:.2e}")
+            self.max_step_x_coord.setText(f"{integrator.max_step_x_coord:.2e}")
+            self.min_step.setText(f"{integrator.min_step:.2e}")
+            self.min_step_x_coord.setText(f"{integrator.min_step_x_coord:.2e}")
+            self.bound_delta.setText(f"{(x_curr - self.x_max):.2e}")
+            self.max_lee.setText(f"{integrator.max_error:.2e}")
 
 
 def main() -> None:

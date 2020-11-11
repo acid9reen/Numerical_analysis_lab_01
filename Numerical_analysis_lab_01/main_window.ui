@@ -26,6 +26,12 @@
         <height>410</height>
        </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
      </widget>
     </item>
     <item row="0" column="1">
@@ -94,6 +100,16 @@
         <string>div count</string>
        </property>
       </column>
+      <column>
+       <property name="text">
+        <string>u</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>|u - v|</string>
+       </property>
+      </column>
      </widget>
     </item>
     <item row="1" column="0" colspan="2">
@@ -116,6 +132,68 @@
       <property name="verticalSpacing">
        <number>6</number>
       </property>
+      <item row="2" column="4">
+       <widget class="QCheckBox" name="step_control_check_box">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>With step control</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="6">
+       <spacer name="horizontalSpacer_9">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="7">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;min h&lt;/span&gt;&lt;span style=&quot; font-size:10pt; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="8">
+       <widget class="QLabel" name="min_step">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="x_min_lbl">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;X&lt;/span&gt;&lt;span style=&quot; font-size:10pt; vertical-align:sub;&quot;&gt;min&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="iters_lbl">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Iters&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="1">
        <widget class="QLineEdit" name="u_0_text_box">
         <property name="maximumSize">
@@ -129,22 +207,6 @@
         </property>
         <property name="placeholderText">
          <string>0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4">
-       <widget class="QRadioButton" name="task_1_radio_btn">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="cursor">
-         <cursorShape>ArrowCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Task 1</string>
         </property>
        </widget>
       </item>
@@ -164,53 +226,17 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
-       <widget class="QLineEdit" name="eps_text_box">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
+      <item row="1" column="8">
+       <widget class="QLabel" name="max_step">
         <property name="text">
-         <string>0.00001</string>
-        </property>
-        <property name="placeholderText">
-         <string>0.00001</string>
+         <string/>
         </property>
        </widget>
       </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="step_lbl">
+      <item row="1" column="2">
+       <widget class="QLabel" name="eps_lbl">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Step&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="5">
-       <spacer name="horizontalSpacer_9">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="x_max_lbl">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;X&lt;/span&gt;&lt;span style=&quot; font-size:10pt; vertical-align:sub;&quot;&gt;max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="u_0_lbl">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;U(0)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Eps&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -230,19 +256,20 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="4">
-       <widget class="QRadioButton" name="test_task_1_radio_btn">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
+      <item row="1" column="9">
+       <widget class="QLabel" name="label_5">
         <property name="text">
-         <string>Test task 1</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;at x = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
-        <property name="checked">
-         <bool>true</bool>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="10">
+       <widget class="QLabel" name="max_step_x_coord">
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
@@ -262,27 +289,8 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="eps_lbl">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Eps&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="x_min_lbl">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;X&lt;/span&gt;&lt;span style=&quot; font-size:10pt; vertical-align:sub;&quot;&gt;min&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3">
-       <widget class="QCheckBox" name="step_control_check_box">
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="eps_text_box">
         <property name="maximumSize">
          <size>
           <width>100</width>
@@ -290,11 +298,21 @@
          </size>
         </property>
         <property name="text">
-         <string>With step control</string>
+         <string>0.00001</string>
+        </property>
+        <property name="placeholderText">
+         <string>0.00001</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="4">
+      <item row="2" column="10">
+       <widget class="QLabel" name="min_step_x_coord">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="5">
        <widget class="QPushButton" name="plot_btn">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -316,19 +334,214 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="4">
+       <widget class="QRadioButton" name="test_task_1_radio_btn">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Test task 1</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="7">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;max h&lt;/span&gt;&lt;span style=&quot; font-size:10pt; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="16">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="step_lbl">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Step&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="x_max_lbl">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;X&lt;/span&gt;&lt;span style=&quot; font-size:10pt; vertical-align:sub;&quot;&gt;max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QLineEdit" name="iters_text_box">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>100</string>
+        </property>
+        <property name="placeholderText">
+         <string>100</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="9">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;at x = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QRadioButton" name="task_1_radio_btn">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Task 1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="u_0_lbl">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;U(0)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="11">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="11">
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="11">
+       <widget class="Line" name="line_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="12">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;max|LEE| = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="13">
+       <widget class="QLabel" name="max_lee">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;max|u&lt;/span&gt;&lt;span style=&quot; font-size:10pt; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;-v&lt;/span&gt;&lt;span style=&quot; font-size:10pt; vertical-align:sub;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;| = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="12">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;n = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="12">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;b - x&lt;/span&gt;&lt;span style=&quot; font-size:10pt; vertical-align:sub;&quot;&gt;n &lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;= &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="9">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;at x = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="8">
+       <widget class="QLabel" name="max_u_v_delta">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="13">
+       <widget class="QLabel" name="ns">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="13">
+       <widget class="QLabel" name="bound_delta">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="10">
+       <widget class="QLabel" name="max_u_v_delta_x_coord">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1100</width>
-     <height>21</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
