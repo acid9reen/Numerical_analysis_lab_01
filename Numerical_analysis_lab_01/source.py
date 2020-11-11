@@ -15,10 +15,10 @@ class Main_window(QtWidgets.QMainWindow):
         super(Main_window, self).__init__()
         uic.loadUi(r"Numerical_analysis_lab_01\main_window.ui", self)
         self.addToolBar(NavigationToolbar(self.plot.canvas, self))
-        self.plot_btn.clicked.connect(self.update_graph)
+        self.plot_btn.clicked.connect(self.plot_btn_on_click)
 
 
-    def update_graph(self):
+    def plot_btn_on_click(self):
 
         self.x_min = float(self.x_min_text_box.text())
         self.x_max = float(self.x_max_text_box.text())
