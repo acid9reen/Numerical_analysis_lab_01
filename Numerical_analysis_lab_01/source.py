@@ -15,6 +15,7 @@ class Main_window(QtWidgets.QMainWindow):
         super(Main_window, self).__init__()
         uic.loadUi(r"Numerical_analysis_lab_01\main_window.ui", self)
         self.addToolBar(NavigationToolbar(self.plot.canvas, self))
+        self.setWindowIcon(QtGui.QIcon(r'Numerical_analysis_lab_01\icon.png'))
         self.plot_btn.clicked.connect(self.plot_btn_on_click)
 
 
