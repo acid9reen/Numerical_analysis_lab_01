@@ -1,4 +1,4 @@
-import sys
+import sys, os
 import numpy as np
 import random
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
@@ -13,9 +13,10 @@ matplotlib.use('Qt5Agg')
 class Main_window(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super(Main_window, self).__init__()
-        uic.loadUi(r"Numerical_analysis_lab_01\main_window.ui", self)
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        uic.loadUi(script_dir + os.path.sep + "main_window.ui", self)
         self.addToolBar(NavigationToolbar(self.plot.canvas, self))
-        self.setWindowIcon(QtGui.QIcon(r'Numerical_analysis_lab_01\icon.png'))
+        self.setWindowIcon(QtGui.QIcon(script_dir + os.path.sep + "icon.png"))
         self.plot_btn.clicked.connect(self.plot_btn_on_click)
 
 
