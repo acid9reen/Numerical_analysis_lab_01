@@ -58,6 +58,7 @@ class Main_window(QtWidgets.QMainWindow):
             vs.append(v_curr)
             us.append(Integrator.test_task_1_true_solution(x_curr, v_curr))
 
+        self.table.setVerticalHeaderLabels((str(i) for i in range(row + 1)))
         self.plot.canvas.axes.clear()
         self.plot.canvas.axes.plot(xs, vs)
         self.plot.canvas.axes.plot(xs, us)
