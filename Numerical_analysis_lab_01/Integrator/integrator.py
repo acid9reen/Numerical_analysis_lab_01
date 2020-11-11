@@ -108,15 +108,15 @@ class Integrator:
                     self._mul_count += 1
 
                 if lee > self._max_error:
-                    self._max_error = lee
+                    self.max_error = lee
 
                 if self._step > self.max_step:
-                    self._max_step = self._step
-                    self._max_step_x_coord = x_next
+                    self.max_step = self._step
+                    self.max_step_x_coord = x_next
 
                 if self._step < self.min_step:
-                    self._min_step = self._step
-                    self._min_step_x_coord = x_next
+                    self.min_step = self._step
+                    self.min_step_x_coord = x_next
 
                 break
 
