@@ -35,7 +35,8 @@ class Main_window(QtWidgets.QMainWindow):
         vs = []
         us = []
         row = 0
-        self.table.setRowCount(0)
+        while (self.table.rowCount() > 0):
+            self.table.removeRow(0)
 
         while x_curr < self.x_max:
             if self.step_control_check_box.isChecked():
