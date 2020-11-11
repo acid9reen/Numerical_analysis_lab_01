@@ -32,9 +32,9 @@ class Main_window(QtWidgets.QMainWindow):
                                     self.eps, self.max_iters)
             x_curr = self.x_min
             v_curr = self.u_0
-            xs = []
-            vs = []
-            us = []
+            xs = np.array([], dtype=np.longdouble)
+            vs = np.array([], dtype=np.longdouble)
+            us = np.array([], dtype=np.longdouble)
 
             row = 0
             while (self.table.rowCount() > 0):
@@ -56,9 +56,9 @@ class Main_window(QtWidgets.QMainWindow):
 
                 x_curr = point_info.x
                 v_curr = point_info.v
-                xs.append(x_curr)
-                vs.append(v_curr)
-                us.append(Integrator.test_task_1_true_solution(x_curr, v_curr))
+                xs = np.append(xs, x_curr)
+                vs = np.append(vs, v_curr)
+                us = np.append(us, Integrator.test_task_1_true_solution(x_curr, v_curr))
 
             self.table.setVerticalHeaderLabels((str(i) for i in range(row + 1)))
             self.plot.canvas.axes.clear()
@@ -73,8 +73,8 @@ class Main_window(QtWidgets.QMainWindow):
                                     self.eps, self.max_iters)
             x_curr = self.x_min
             v_curr = self.u_0
-            xs = []
-            vs = []
+            xs = np.array([], dtype=np.longdouble)
+            vs = np.array([], dtype=np.longdouble)
 
             row = 0
             while (self.table.rowCount() > 0):
@@ -96,8 +96,8 @@ class Main_window(QtWidgets.QMainWindow):
 
                 x_curr = point_info.x
                 v_curr = point_info.v
-                xs.append(x_curr)
-                vs.append(v_curr)
+                xs = np.append(xs, x_curr)
+                vs = np.append(vs, v_curr)
 
             self.table.setVerticalHeaderLabels((str(i) for i in range(row + 1)))
             self.plot.canvas.axes.clear()

@@ -1,4 +1,4 @@
-from math import sin, pow, exp
+import numpy as np
 
 
 class Point_info:
@@ -45,13 +45,13 @@ class Integrator:
 
     @staticmethod
     def test_task_1_true_solution(x: float, u: float) -> float:
-        return float(1 * exp(2 * x))
+        return float(1 * np.exp(2 * x))
 
 
     @staticmethod
     def task_1(x: float, u: float) -> float:
-        return float(((pow(x, 3) + 1) / (pow(x, 5) + 1))
-                     * pow(u, 2) + u - pow(u, 3) * sin(10 * x))
+        return float(((np.power(x, 3) + 1) / (np.power(x, 5) + 1))
+                     * np.power(u, 2) + u - np.power(u, 3) * np.sin(10 * x))
 
 
     def _runge_kutta_4(self, x: float, v: float, step: float) -> dict:
@@ -92,7 +92,7 @@ class Integrator:
                                               self._step / 2.)
 
             delta = whole_step['v'] - half_step_2['v']
-            lee = abs(delta / (pow(2, 4) - 1))
+            lee = abs(delta / (np.power(2, 4) - 1))
 
             if (lee > self._eps) and (iter_counter < self._max_iters):
                 self._step /= 2
@@ -103,7 +103,7 @@ class Integrator:
                 v_next = whole_step['v']
                 v2_next = half_step_2['v']
 
-                if (lee < self._eps / pow(2, 4 + 1)):
+                if (lee < self._eps / np.power(2, 4 + 1)):
                     self._step *= 2
                     self._mul_count += 1
 
