@@ -44,6 +44,7 @@ class Main_window(QtWidgets.QMainWindow):
             v_curr = self.u_0
             max_u_v_delta = 0
             max_u_v_delta_x_coord = 0
+            const = Integrator.const(self.x_min, self.u_0)
             xs = np.array([], dtype=np.longdouble)
             vs = np.array([], dtype=np.longdouble)
             us = np.array([], dtype=np.longdouble)
@@ -61,7 +62,7 @@ class Main_window(QtWidgets.QMainWindow):
 
                 x_curr = point_info.x
                 v_curr = point_info.v
-                u_curr = Integrator.test_task_1_true_solution(x_curr, v_curr)
+                u_curr = Integrator.test_task_1_true_solution(x_curr, v_curr, const)
                 xs = np.append(xs, x_curr)
                 vs = np.append(vs, v_curr)
                 us = np.append(us, u_curr)
@@ -90,7 +91,7 @@ class Main_window(QtWidgets.QMainWindow):
             self.plot.canvas.axes.set_title('Numerical approximation')
             self.plot.canvas.draw()
 
-            self.ns.setText(f"{row}")
+            self.ns.setText(f"{row - 1}")
             self.max_step.setText(f"{integrator.max_step:.2e}")
             self.max_step_x_coord.setText(f"{integrator.max_step_x_coord:.2e}")
             self.min_step.setText(f"{integrator.min_step:.2e}")
@@ -138,7 +139,7 @@ class Main_window(QtWidgets.QMainWindow):
             self.plot.canvas.axes.set_title('Numerical approximation')
             self.plot.canvas.draw()
 
-            self.ns.setText(f"{row}")
+            self.ns.setText(f"{row - 1}")
             self.max_step.setText(f"{integrator.max_step:.2e}")
             self.max_step_x_coord.setText(f"{integrator.max_step_x_coord:.2e}")
             self.min_step.setText(f"{integrator.min_step:.2e}")

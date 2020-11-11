@@ -39,13 +39,18 @@ class Integrator:
 
 
     @staticmethod
+    def const(x_0: float, u_0: float):
+        return float(u_0 / np.exp(2 * x_0))
+
+
+    @staticmethod
     def test_task_1(x: float, u: float) -> float:
         return float(2 * u)
 
 
     @staticmethod
-    def test_task_1_true_solution(x: float, u: float) -> float:
-        return float(1 * np.exp(2 * x))
+    def test_task_1_true_solution(x: float, u: float, c: float) -> float:
+        return float(c * np.exp(2 * x))
 
 
     @staticmethod
@@ -107,15 +112,15 @@ class Integrator:
                     self._step *= 2
                     self._mul_count += 1
 
-                if lee > self._max_error:
+                if lee > self.max_error:
                     self.max_error = lee
 
-                if self._step > self.max_step:
-                    self.max_step = self._step
+                if old_step > self.max_step:
+                    self.max_step = old_step
                     self.max_step_x_coord = x_next
 
-                if self._step < self.min_step:
-                    self.min_step = self._step
+                if old_step < self.min_step:
+                    self.min_step = old_step
                     self.min_step_x_coord = x_next
 
                 break
